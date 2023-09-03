@@ -6,9 +6,9 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    siteUrl: "https://gatsbydatocmshomepage.gatsbyjs.io/",
-    title: "Gatsby DatoCMS Homepage Starter",
-    author: `Gatsby`,
+    siteUrl: "https://vimasa.co.in",
+    title: "Vimasa Consulting",
+    author: `Vimasa`,
     description: "A Gatsby Starter for building homepages with DatoCMS",
   },
   plugins: [
@@ -26,12 +26,12 @@ module.exports = {
     {
       resolve: "gatsby-plugin-manifest",
       options: {
-        name: "Gatsby Starter DatoCMS Homepage",
-        short_name: "Gatsby",
+        name: "Vimasa Consulting",
+        short_name: "Vimasa",
         start_url: "/",
         // These can be imported once ESM support lands
         background_color: "#ffffff",
-        theme_color: "#db3000",
+        theme_color: "#0c0c0c",
         icon: "src/favicon.png",
       },
     },
