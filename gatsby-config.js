@@ -24,6 +24,16 @@ module.exports = {
     "gatsby-transformer-sharp",
     "gatsby-plugin-vanilla-extract",
     {
+    resolve: "gatsby-plugin-google-tagmanager",
+      options: {
+        id: "GTM-WQZV6BDS",
+        includeInDevelopment: false,
+        defaultDataLayer: { platform: "gatsby" },
+        routeChangeEventName: "route-changed",
+        enableWebVitalsTracking: true,
+      },
+    },
+    {
       resolve: "gatsby-plugin-manifest",
       options: {
         name: "Vimasa Consulting",
@@ -32,7 +42,7 @@ module.exports = {
         // These can be imported once ESM support lands
         background_color: "#ffffff",
         theme_color: "#0c0c0c",
-        icon: "src/favicon.png",
+        icon: "src/favicon-32x32.png",
       },
     },
   ],
