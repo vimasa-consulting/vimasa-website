@@ -24,6 +24,16 @@ module.exports = {
     "gatsby-transformer-sharp",
     "gatsby-plugin-vanilla-extract",
     {
+    resolve: "gatsby-plugin-google-tagmanager",
+      options: {
+        id: "GTM-WQZV6BDS",
+        includeInDevelopment: false,
+        defaultDataLayer: { platform: "gatsby" },
+        routeChangeEventName: "route-changed",
+        enableWebVitalsTracking: true,
+      },
+    },
+    {
       resolve: "gatsby-plugin-manifest",
       options: {
         name: "Vimasa Consulting",
