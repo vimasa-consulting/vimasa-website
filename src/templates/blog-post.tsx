@@ -89,3 +89,21 @@ export default function BlogPost(props: BlogPost) {
 export const Head = (props: BlogPost) => {
   return <SEOHead {...props} description={props.excerpt} />
 }
+
+export const query = graphql`
+  query ($id: String!) {
+    blogPost(id: { eq: $id }) {
+      id
+      slug
+      title
+      html
+      excerpt
+      date
+      image {
+        id
+        url
+        gatsbyImageData
+        alt
+      }
+    }
+  }
