@@ -119,3 +119,21 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
 export const Head = () => {
   return <SEOHead title="Blog" />
 }
+
+export const query = graphql`
+  query ($id: String!) {
+    blogPost(id: { eq: $id }) {
+      id
+      slug
+      title
+      html
+      excerpt
+      date
+      image {
+        id
+        url
+        gatsbyImageData
+        alt
+      }
+    }
+  }
