@@ -1,5 +1,6 @@
 const dato = require("datocms-structured-text-to-html-string")
 const { getGatsbyImageResolver } = require("gatsby-plugin-image/graphql-utils")
+const path = require('path');
 
 exports.createSchemaCustomization = async ({ actions }) => {
   actions.createFieldExtension({
@@ -739,8 +740,8 @@ exports.createSchemaCustomization = async ({ actions }) => {
   `)
 }
 
-exports.createPages = ({ actions }) => {
-  const { createSlice } = actions
+exports.createPages = async ({ graphql, actions }) => {
+  const { createPage, createSlice } = actions
   createSlice({
     id: "header",
     component: require.resolve("./src/components/header.tsx"),
@@ -748,6 +749,30 @@ exports.createPages = ({ actions }) => {
   createSlice({
     id: "footer",
     component: require.resolve("./src/components/footer.tsx"),
-  })
+  });
+
+  const allWebsitePages = await graphql(`
+    {
+      allDatoCmsServicepage {
+        nodes {
+          id,
+          title,
+          slug,
+        }
+      }
+    }
+  `);
+  console.log(allWebsitePages);
+
+  // Create Service Pages
+  for (const page of allWebsitePages.data.allDatoCmsServicepage.nodes) {
+    await createPage({
+      path: `services/${page.slug}`,
+      component: path.resolve(`./src/templates/service.tsx`),
+      context: {
+        slug: page.slug,
+      },
+    })
+  };
 }
-      
+

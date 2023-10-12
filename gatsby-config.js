@@ -19,12 +19,13 @@ module.exports = {
         environment: process.env.DATOCMS_ENVIRONMENT,
       },
     },
+    `gatsby-plugin-sass`,
     "gatsby-plugin-sharp",
     "gatsby-plugin-image",
     "gatsby-transformer-sharp",
     "gatsby-plugin-vanilla-extract",
     {
-    resolve: "gatsby-plugin-google-tagmanager",
+      resolve: "gatsby-plugin-google-tagmanager",
       options: {
         id: "GTM-WQZV6BDS",
         includeInDevelopment: false,
