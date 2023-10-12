@@ -4332,15 +4332,6 @@
   dependencies:
     "datocms-structured-text-utils" "^2.0.4"
 
-"datocms-structured-text-to-html-string@^2.1.11":
-  "integrity" "sha512-chEdtfVhkSC39hkFIuKeblFfZ9DnnwF8a9QK9xjIkhcXDBlKBt4f/cc7BTx+oBjDuCiDSdcoHP8TdU/Jdh7+Mg=="
-  "resolved" "https://registry.npmjs.org/datocms-structured-text-to-html-string/-/datocms-structured-text-to-html-string-2.1.11.tgz"
-  "version" "2.1.11"
-  dependencies:
-    "datocms-structured-text-generic-html-renderer" "^2.0.4"
-    "datocms-structured-text-utils" "^2.0.4"
-    "vhtml" "^2.2.0"
-
 "datocms-structured-text-to-plain-text@^2.0.1":
   "integrity" "sha512-/0VQNo6xZXiGdnHCTIoEmdnwD1JZVMMsyEfSy2SNF7QW4YAOz8bKtWSwCT4cYRKrhA/jZWCq7G4u0kPmiy1FWg=="
   "resolved" "https://registry.npmjs.org/datocms-structured-text-to-plain-text/-/datocms-structured-text-to-plain-text-2.0.4.tgz"
@@ -9860,7 +9851,7 @@
     "schema-utils" "^3.0.0"
     "semver" "^7.3.2"
 
-"sass@*", "sass@^1.3.0", "sass@^1.30.0":
+"sass@*", "sass@^1.3.0", "sass@^1.30.0", "sass@^1.69.3":
   "integrity" "sha512-X99+a2iGdXkdWn1akFPs0ZmelUzyAQfvqYc2P/MPTrJRuIRoTffGzT9W9nFqG00S+c8hXzVmgxhUuHFdrwxkhQ=="
   "resolved" "https://registry.npmjs.org/sass/-/sass-1.69.3.tgz"
   "version" "1.69.3"
@@ -11098,11 +11089,6 @@
     "assert-plus" "^1.0.0"
     "core-util-is" "1.0.2"
     "extsprintf" "^1.2.0"
-
-"vhtml@^2.2.0":
-  "integrity" "sha512-TPXrXrxBOslRUVnlVkiAqhoXneiertIg86bdvzionrUYhEuiROvyPZNiiP6GIIJ2Q7oPNVyEtIx8gMAZZE9lCQ=="
-  "resolved" "https://registry.npmjs.org/vhtml/-/vhtml-2.2.0.tgz"
-  "version" "2.2.0"
 
 "vite-node@^0.28.5":
   "integrity" "sha512-LmXb9saMGlrMZbXTvOveJKwMTBTNUH66c8rJnQ0ZPNX+myPEol64+szRzXtV5ORb0Hb/91yq+/D3oERoyAt6LA=="
