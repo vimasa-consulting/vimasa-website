@@ -309,6 +309,15 @@ exports.createSchemaCustomization = async ({ actions }) => {
       entityPayload: JSON
     }
 
+    interface ServicePage implements Node {
+      id: ID!
+      title: String
+      slug: String
+      image: HomepageImage
+      content: [HomepageBlock]
+      entityPayload: JSON
+    }
+
     interface LayoutHeader implements Node {
       id: ID!
       navItems: [HeaderNavItem]
@@ -686,6 +695,21 @@ exports.createSchemaCustomization = async ({ actions }) => {
       entityPayload: JSON
       originalId: String
     }
+
+  `)
+
+  // Servie Pages
+  actions.createTypes(/* GraphQL */`
+    type DatoCmsServicepage implements Node & ServicePage @dontInfer {
+      id: ID!
+      title: String @proxy(from: "entityPayload.attributes.metadata.title")
+      slug: String @proxy(from: "entityPayload.attributes.metadata.slug")
+      image: HomepageImage
+        @link(by: "originalId", from: "entityPayload.attributes.metadata.image")
+      content: [HomepageBlock]
+      entityPayload: JSON
+      originalId: String
+    }
   `)
 
   // Layout types
@@ -762,8 +786,6 @@ exports.createPages = async ({ graphql, actions }) => {
       }
     }
   `);
-  console.log(allWebsitePages);
-
   // Create Service Pages
   for (const page of allWebsitePages.data.allDatoCmsServicepage.nodes) {
     await createPage({
