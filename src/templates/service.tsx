@@ -13,9 +13,8 @@ interface ServicePage {
       id: string
       title: string
       description: string
-      image: { id: string; url: string, alt: string }
       blocks: sections.HomepageBlock[]
-    }
+   }
   }
 }
 
@@ -28,7 +27,7 @@ export default function Service({ data }: ServicePage) {
           <h2 className='heading'>
             {data.servicePage.title}
           </h2>
-          {data.servicePage.image && <GatsbyImage alt={data.servicePage.image.alt} image={getImage(data.servicePage.image)} />}
+          {/* {data.servicePage.image && <GatsbyImage alt={data.servicePage.image.alt} image={getImage(data.servicePage.image)} />} */}
           {data.servicePage.blocks.map((block) => {
             const { id, blocktype, ...componentProps } = block
             const Component = sections[blocktype] || Fallback
@@ -46,10 +45,6 @@ export const query = graphql`
       id
       title
       slug
-      image {
-        alt
-        gatsbyImageData
-      }     
       blocks: content {
         id
         blocktype
