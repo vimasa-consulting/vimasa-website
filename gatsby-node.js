@@ -1,5 +1,6 @@
 const dato = require("datocms-structured-text-to-html-string")
 const { getGatsbyImageResolver } = require("gatsby-plugin-image/graphql-utils")
+const path = require('path');
 
 exports.createSchemaCustomization = async ({ actions }) => {
   actions.createFieldExtension({
@@ -303,6 +304,15 @@ exports.createSchemaCustomization = async ({ actions }) => {
       id: ID!
       title: String
       description: String
+      image: HomepageImage
+      content: [HomepageBlock]
+      entityPayload: JSON
+    }
+
+    interface ServicePage implements Node {
+      id: ID!
+      title: String
+      slug: String
       image: HomepageImage
       content: [HomepageBlock]
       entityPayload: JSON
@@ -685,6 +695,21 @@ exports.createSchemaCustomization = async ({ actions }) => {
       entityPayload: JSON
       originalId: String
     }
+
+  `)
+
+  // Servie Pages
+  actions.createTypes(/* GraphQL */`
+    type DatoCmsServicepage implements Node & ServicePage @dontInfer {
+      id: ID!
+      title: String @proxy(from: "entityPayload.attributes.metadata.title")
+      slug: String @proxy(from: "entityPayload.attributes.metadata.slug")
+      image: HomepageImage
+        @link(by: "originalId", from: "entityPayload.attributes.metadata.image")
+      content: [HomepageBlock]
+      entityPayload: JSON
+      originalId: String
+    }
   `)
 
   // Layout types
@@ -739,8 +764,8 @@ exports.createSchemaCustomization = async ({ actions }) => {
   `)
 }
 
-exports.createPages = ({ actions }) => {
-  const { createSlice } = actions
+exports.createPages = async ({ graphql, actions }) => {
+  const { createPage, createSlice } = actions
   createSlice({
     id: "header",
     component: require.resolve("./src/components/header.tsx"),
@@ -748,6 +773,28 @@ exports.createPages = ({ actions }) => {
   createSlice({
     id: "footer",
     component: require.resolve("./src/components/footer.tsx"),
-  })
+  });
+
+  const allWebsitePages = await graphql(`
+    {
+      allDatoCmsServicepage {
+        nodes {
+          id,
+          title,
+          slug,
+        }
+      }
+    }
+  `);
+  // Create Service Pages
+  for (const page of allWebsitePages.data.allDatoCmsServicepage.nodes) {
+    await createPage({
+      path: `services/${page.slug}`,
+      component: path.resolve(`./src/templates/service.tsx`),
+      context: {
+        slug: page.slug,
+      },
+    })
+  };
 }
-      
+
